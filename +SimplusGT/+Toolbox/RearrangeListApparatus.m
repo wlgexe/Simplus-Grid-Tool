@@ -104,7 +104,7 @@ for m = 1:N_Bus
 end
 
 % Error check
-if (ColumnMax_Apparatus>19)
+if (ColumnMax_Apparatus>49)
     error(['Error: Apparatus data overflow.']); 
 end
 
@@ -263,6 +263,57 @@ Para0051.f_i_sdq   = 500;   % (Hz) bandwidth, PMSG stator current
 Para0051.f_w_m     = 5;     % (Hz) bandwidth, wind turbine speed 
 
 % ======================================
+% Synchronous machine full model
+% ======================================
+Para0060.X=0.15;
+Para0060.R=0.0043;
+Para0060.Xd=1.67; 
+Para0060.Xd1=0.265; 
+Para0060.Xd2=0.205; 
+Para0060.Td1=0.587; 
+Para0060.Td2=0.025;
+Para0060.Xq=1.6;
+Para0060.Xq1=0.46;
+Para0060.Xq2=0.205;
+Para0060.Tq1=0.135;
+Para0060.Tq2=0.027;
+Para0060.H=2.656;
+Para0060.D=1;
+%AVR parameters
+Para0060.TR=1;
+Para0060.KA=50;
+Para0060.TA=0.06;
+Para0060.VRmax=1;
+Para0060.VRmin=-1;
+Para0060.KE=-0.047;
+Para0060.TE=0.52;
+Para0060.E1=3.24;
+Para0060.SE1=0.072;
+Para0060.E2=4.32;
+Para0060.SE2=0.282;
+Para0060.KF=0.083;
+Para0060.TF=1;
+Para0060.KP=0.083;
+Para0060.KI=1;
+Para0060.KD=0.083;
+Para0060.TD=1;
+Para0060.KPSS=0;
+Para0060.TW=10;
+Para0060.T11=5;
+Para0060.T12=0.6;
+Para0060.T21=3;
+Para0060.T22=0.5;
+Para0060.T31=3;
+Para0060.T32=0.5;
+Para0060.VSSmax=0.2;
+Para0060.VSSmin=-0.2;
+Para0060.Rgov=0.011;
+Para0060.T1gov=0.1;
+Para0060.T2gov=0.1;
+Para0060.T3gov=0.3;
+Para0060.Dtgov=0.25;
+
+% ======================================
 % Ac infinite bus (short-circuit in small-signal)
 % ======================================
 Para0090 = [];
@@ -345,6 +396,8 @@ for i = 1:N_App
             elseif AppType == 51
                 ParaCell{i} = Para0051; % Wind turbine (PLL)
             end
+        case 6
+            ParaCell{i} = Para0060; % Synchronous Machine
         case 9
             ParaCell{i} = Para0090;     % Ac inifnite bus
         case 10
@@ -525,6 +578,277 @@ for i = 1:length(row)
                     error(['Error: parameter overflow, bus ' num2str(AppBus) 'type ' num2str(AppType) '.']);
             end
         end
+    elseif floor(AppType/10) == 6                % Wind turbine
+        if AppType == 60
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+            end
+        elseif AppType == 61
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                case 15; ParaCell{row(i)}.Rgov=UserValue;
+                case 16; ParaCell{row(i)}.T1gov=UserValue;
+                case 17; ParaCell{row(i)}.T2gov=UserValue;
+                case 18; ParaCell{row(i)}.T3gov=UserValue;
+                case 19; ParaCell{row(i)}.Dtgov=UserValue;
+            end  
+        elseif AppType == 62
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                %AVR parameters
+                case 15; ParaCell{row(i)}.TR=UserValue;
+                case 16; ParaCell{row(i)}.KA=UserValue;
+                case 17; ParaCell{row(i)}.TA=UserValue;
+                case 18; ParaCell{row(i)}.VRmax=UserValue;
+                case 19; ParaCell{row(i)}.VRmin=UserValue;
+                case 20; ParaCell{row(i)}.KE=UserValue;
+                case 21; ParaCell{row(i)}.TE=UserValue;
+                case 22; ParaCell{row(i)}.E1=UserValue;
+                case 23; ParaCell{row(i)}.SE1=UserValue;
+                case 24; ParaCell{row(i)}.E2=UserValue;
+                case 25; ParaCell{row(i)}.SE2=UserValue;
+                case 26; ParaCell{row(i)}.KF=UserValue;
+                case 27; ParaCell{row(i)}.TF=UserValue;
+                case 28; ParaCell{row(i)}.KP=UserValue;
+                case 29; ParaCell{row(i)}.KI=UserValue;
+                case 30; ParaCell{row(i)}.KD=UserValue;
+                case 31; ParaCell{row(i)}.TD=UserValue;
+            end 
+        elseif AppType == 63
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                %AVR parameters
+                case 15; ParaCell{row(i)}.TR=UserValue;
+                case 16; ParaCell{row(i)}.KA=UserValue;
+                case 17; ParaCell{row(i)}.TA=UserValue;
+                case 18; ParaCell{row(i)}.VRmax=UserValue;
+                case 19; ParaCell{row(i)}.VRmin=UserValue;
+                case 20; ParaCell{row(i)}.KE=UserValue;
+                case 21; ParaCell{row(i)}.TE=UserValue;
+                case 22; ParaCell{row(i)}.E1=UserValue;
+                case 23; ParaCell{row(i)}.SE1=UserValue;
+                case 24; ParaCell{row(i)}.E2=UserValue;
+                case 25; ParaCell{row(i)}.SE2=UserValue;
+                case 26; ParaCell{row(i)}.KF=UserValue;
+                case 27; ParaCell{row(i)}.TF=UserValue;
+                case 28; ParaCell{row(i)}.KP=UserValue;
+                case 29; ParaCell{row(i)}.KI=UserValue;
+                case 30; ParaCell{row(i)}.KD=UserValue;
+                case 31; ParaCell{row(i)}.TD=UserValue;
+                case 32; ParaCell{row(i)}.Rgov=UserValue;
+                case 33; ParaCell{row(i)}.T1gov=UserValue;
+                case 34; ParaCell{row(i)}.T2gov=UserValue;
+                case 35; ParaCell{row(i)}.T3gov=UserValue;
+                case 36; ParaCell{row(i)}.Dtgov=UserValue;
+            end 
+        elseif AppType == 64
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                case 15; ParaCell{row(i)}.KPSS=UserValue;
+                case 16; ParaCell{row(i)}.TW=UserValue;
+                case 17; ParaCell{row(i)}.T11=UserValue;
+                case 18; ParaCell{row(i)}.T12=UserValue;
+                case 19; ParaCell{row(i)}.T21=UserValue;
+                case 20; ParaCell{row(i)}.T22=UserValue;
+                case 21; ParaCell{row(i)}.T31=UserValue;
+                case 22; ParaCell{row(i)}.T32=UserValue;
+                case 23; ParaCell{row(i)}.VSSmax=UserValue;
+                case 24; ParaCell{row(i)}.VSSmin=UserValue;
+            end 
+        elseif AppType == 65
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                case 15; ParaCell{row(i)}.KPSS=UserValue;
+                case 16; ParaCell{row(i)}.TW=UserValue;
+                case 17; ParaCell{row(i)}.T11=UserValue;
+                case 18; ParaCell{row(i)}.T12=UserValue;
+                case 19; ParaCell{row(i)}.T21=UserValue;
+                case 20; ParaCell{row(i)}.T22=UserValue;
+                case 21; ParaCell{row(i)}.T31=UserValue;
+                case 22; ParaCell{row(i)}.T32=UserValue;
+                case 23; ParaCell{row(i)}.VSSmax=UserValue;
+                case 24; ParaCell{row(i)}.VSSmin=UserValue;
+                case 25; ParaCell{row(i)}.Rgov=UserValue;
+                case 26; ParaCell{row(i)}.T1gov=UserValue;
+                case 27; ParaCell{row(i)}.T2gov=UserValue;
+                case 28; ParaCell{row(i)}.T3gov=UserValue;
+                case 29; ParaCell{row(i)}.Dtgov=UserValue;
+            end 
+        elseif AppType == 66
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                %AVR parameters
+                case 15; ParaCell{row(i)}.TR=UserValue;
+                case 16; ParaCell{row(i)}.KA=UserValue;
+                case 17; ParaCell{row(i)}.TA=UserValue;
+                case 18; ParaCell{row(i)}.VRmax=UserValue;
+                case 19; ParaCell{row(i)}.VRmin=UserValue;
+                case 20; ParaCell{row(i)}.KE=UserValue;
+                case 21; ParaCell{row(i)}.TE=UserValue;
+                case 22; ParaCell{row(i)}.E1=UserValue;
+                case 23; ParaCell{row(i)}.SE1=UserValue;
+                case 24; ParaCell{row(i)}.E2=UserValue;
+                case 25; ParaCell{row(i)}.SE2=UserValue;
+                case 26; ParaCell{row(i)}.KF=UserValue;
+                case 27; ParaCell{row(i)}.TF=UserValue;
+                case 28; ParaCell{row(i)}.KP=UserValue;
+                case 29; ParaCell{row(i)}.KI=UserValue;
+                case 30; ParaCell{row(i)}.KD=UserValue;
+                case 31; ParaCell{row(i)}.TD=UserValue;
+                case 32; ParaCell{row(i)}.KPSS=UserValue;
+                case 33; ParaCell{row(i)}.TW=UserValue;
+                case 34; ParaCell{row(i)}.T11=UserValue;
+                case 35; ParaCell{row(i)}.T12=UserValue;
+                case 36; ParaCell{row(i)}.T21=UserValue;
+                case 37; ParaCell{row(i)}.T22=UserValue;
+                case 38; ParaCell{row(i)}.T31=UserValue;
+                case 39; ParaCell{row(i)}.T32=UserValue;
+                case 40; ParaCell{row(i)}.VSSmax=UserValue;
+                case 41; ParaCell{row(i)}.VSSmin=UserValue;
+            end
+        elseif AppType == 67
+            switch SwitchFlag
+                case 1; ParaCell{row(i)}.X=UserValue;
+                case 2; ParaCell{row(i)}.R=UserValue;
+                case 3; ParaCell{row(i)}.Xd=UserValue; 
+                case 4; ParaCell{row(i)}.Xd1=UserValue; 
+                case 5; ParaCell{row(i)}.Xd2=UserValue; 
+                case 6; ParaCell{row(i)}.Td1=UserValue; 
+                case 7; ParaCell{row(i)}.Td2=UserValue;
+                case 8; ParaCell{row(i)}.Xq=UserValue;
+                case 9; ParaCell{row(i)}.Xq1=UserValue;
+                case 10; ParaCell{row(i)}.Xq2=UserValue;
+                case 11; ParaCell{row(i)}.Tq1=UserValue;
+                case 12; ParaCell{row(i)}.Tq2=UserValue;
+                case 13; ParaCell{row(i)}.H=UserValue;
+                case 14; ParaCell{row(i)}.D=UserValue;
+                %AVR parameters
+                case 15; ParaCell{row(i)}.TR=UserValue;
+                case 16; ParaCell{row(i)}.KA=UserValue;
+                case 17; ParaCell{row(i)}.TA=UserValue;
+                case 18; ParaCell{row(i)}.VRmax=UserValue;
+                case 19; ParaCell{row(i)}.VRmin=UserValue;
+                case 20; ParaCell{row(i)}.KE=UserValue;
+                case 21; ParaCell{row(i)}.TE=UserValue;
+                case 22; ParaCell{row(i)}.E1=UserValue;
+                case 23; ParaCell{row(i)}.SE1=UserValue;
+                case 24; ParaCell{row(i)}.E2=UserValue;
+                case 25; ParaCell{row(i)}.SE2=UserValue;
+                case 26; ParaCell{row(i)}.KF=UserValue;
+                case 27; ParaCell{row(i)}.TF=UserValue;
+                case 28; ParaCell{row(i)}.KP=UserValue;
+                case 29; ParaCell{row(i)}.KI=UserValue;
+                case 30; ParaCell{row(i)}.KD=UserValue;
+                case 31; ParaCell{row(i)}.TD=UserValue;
+                case 32; ParaCell{row(i)}.KPSS=UserValue;
+                case 33; ParaCell{row(i)}.TW=UserValue;
+                case 34; ParaCell{row(i)}.T11=UserValue;
+                case 35; ParaCell{row(i)}.T12=UserValue;
+                case 36; ParaCell{row(i)}.T21=UserValue;
+                case 37; ParaCell{row(i)}.T22=UserValue;
+                case 38; ParaCell{row(i)}.T31=UserValue;
+                case 39; ParaCell{row(i)}.T32=UserValue;
+                case 40; ParaCell{row(i)}.VSSmax=UserValue;
+                case 41; ParaCell{row(i)}.VSSmin=UserValue;
+                case 42; ParaCell{row(i)}.Rgov=UserValue;
+                case 43; ParaCell{row(i)}.T1gov=UserValue;
+                case 44; ParaCell{row(i)}.T2gov=UserValue;
+                case 45; ParaCell{row(i)}.T3gov=UserValue;
+                case 46; ParaCell{row(i)}.Dtgov=UserValue;
+            end
+        end
+
     elseif floor(AppType/10) == 101 % Grid-feeding buck
         switch SwitchFlag
             case 1;  ParaCell{row(i)}.Vdc   = UserValue;
