@@ -61,6 +61,10 @@ for i = 1:N_Apparatus
                     FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
                     add_block([Name_LibFile '/Grid-Following Wind Turbine Generator System (dq-Frame System Object)'],FullName_Apparatus{i});
                 end
+            case 006
+                Name_Apparatus{i} = ['Full_SM' num2str(Bus)];
+                FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                add_block([Name_LibFile '/SynchronousMachineFull_SM (dq-Frame System Object)'],FullName_Apparatus{i});
             case 009
             	Name_Apparatus{i} = ['Inf-Bus' num2str(Bus)];
                 FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
