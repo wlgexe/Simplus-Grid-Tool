@@ -62,9 +62,37 @@ for i = 1:N_Apparatus
                     add_block([Name_LibFile '/Grid-Following Wind Turbine Generator System (dq-Frame System Object)'],FullName_Apparatus{i});
                 end
             case 006
-                Name_Apparatus{i} = ['Full_SM' num2str(Bus)];
-                FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
-                add_block([Name_LibFile '/SynchronousMachineFull_SM (dq-Frame System Object)'],FullName_Apparatus{i});
+                % Name_Apparatus{i} = ['Full_SM' num2str(Bus)];
+                % FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                % add_block([Name_LibFile '/SynchronousMachineFull_SM (dq-Frame System Object)'],FullName_Apparatus{i});
+
+                %Name_Apparatus{i} = ['SM_Full' num2str(Bus)];
+                %FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                if ApparatusType{i}==60
+                    Name_Apparatus{i} = ['SM_8th' num2str(i)];
+                    FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                    add_block([Name_LibFile '/SynchronousMachineFull_SM (dq-Frame System Object)'],FullName_Apparatus{i});
+                elseif ApparatusType{i}==62
+                    Name_Apparatus{i} = ['SM_8th_AVR' num2str(i)];
+                    FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                    add_block([Name_LibFile '/SynchronousMachineFull_SMAVR (dq-Frame System Object)'],FullName_Apparatus{i});
+                elseif ApparatusType{i}==66
+                    Name_Apparatus{i} = ['SM_8th_AVRPSS' num2str(i)];
+                    FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                    add_block([Name_LibFile '/SynchronousMachineFull_SMAVRPSS (dq-Frame System Object)'],FullName_Apparatus{i});
+                elseif ApparatusType{i}==61
+                    Name_Apparatus{i} = ['SM_8th_GOV' num2str(i)];
+                    FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                    add_block([Name_LibFile '/SynchronousMachineFull_SM_GOV (dq-Frame System Object)'],FullName_Apparatus{i});
+                elseif ApparatusType{i}==63
+                    Name_Apparatus{i} = ['SM_8th_AVRGOV' num2str(i)];
+                    FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                    add_block([Name_LibFile '/SynchronousMachineFull_SMAVRGOV (dq-Frame System Object)'],FullName_Apparatus{i});
+                elseif ApparatusType{i}==67
+                    Name_Apparatus{i} = ['SM_8th_AVRPSSGOV' num2str(i)];
+                    FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
+                    add_block([Name_LibFile '/SynchronousMachineFull_SMAVRPSSGOV (dq-Frame System Object)'],FullName_Apparatus{i});
+                end
             case 009
             	Name_Apparatus{i} = ['Inf-Bus' num2str(Bus)];
                 FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
