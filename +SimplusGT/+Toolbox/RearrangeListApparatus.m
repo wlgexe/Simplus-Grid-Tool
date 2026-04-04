@@ -18,7 +18,7 @@ function [AppBusCell,AppTypeCell,ParaCell,N_App] = RearrangeListApparatus(UserDa
 
 %% New excel in xlsm format
 % Check if the xlsm format is used
-if strcmp(UserData,'UserData.xlsm')
+if strcmp(UserData(end-4:end),'.xlsm')
     NewExcel = 1;
 else
     NewExcel = 0;
