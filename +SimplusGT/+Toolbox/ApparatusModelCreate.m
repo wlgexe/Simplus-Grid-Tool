@@ -182,18 +182,18 @@ switch floor(Type/10)
                             Para.f_i_sdq;
                             Para.f_w_m];
         end
-     case 6  % Type 60-68
+     case 6  % Type 60-65
         if Type==60
             Apparatus = SimplusGT.Class.SynchronousMachineFull_SM('ApparatusType',Type);
         elseif Type==62
             Apparatus = SimplusGT.Class.SynchronousMachineFull_SMAVR('ApparatusType',Type);
-        elseif Type==66
+        elseif Type==64
             Apparatus = SimplusGT.Class.SynchronousMachineFull_SMAVRPSS('ApparatusType',Type);
         elseif Type == 61
             Apparatus = SimplusGT.Class.SynchronousMachineFull_SM_GOV('ApparatusType',Type);
         elseif Type == 63
             Apparatus = SimplusGT.Class.SynchronousMachineFull_SMAVRGOV('ApparatusType',Type);
-        elseif Type == 67
+        elseif Type == 65
             Apparatus = SimplusGT.Class.SynchronousMachineFull_SMAVRPSSGOV('ApparatusType',Type);
         end
         Apparatus.Para = [ Para.X;
