@@ -76,7 +76,7 @@ for i = 1:N_Apparatus
                     Name_Apparatus{i} = ['SM_8th_AVR' num2str(i)];
                     FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
                     add_block([Name_LibFile '/SynchronousMachineFull_SMAVR (dq-Frame System Object)'],FullName_Apparatus{i});
-                elseif ApparatusType{i}==66
+                elseif ApparatusType{i}==64
                     Name_Apparatus{i} = ['SM_8th_AVRPSS' num2str(i)];
                     FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
                     add_block([Name_LibFile '/SynchronousMachineFull_SMAVRPSS (dq-Frame System Object)'],FullName_Apparatus{i});
@@ -88,7 +88,7 @@ for i = 1:N_Apparatus
                     Name_Apparatus{i} = ['SM_8th_AVRGOV' num2str(i)];
                     FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
                     add_block([Name_LibFile '/SynchronousMachineFull_SMAVRGOV (dq-Frame System Object)'],FullName_Apparatus{i});
-                elseif ApparatusType{i}==67
+                elseif ApparatusType{i}==65
                     Name_Apparatus{i} = ['SM_8th_AVRPSSGOV' num2str(i)];
                     FullName_Apparatus{i} = [Name_Model '/' Name_Apparatus{i}];
                     add_block([Name_LibFile '/SynchronousMachineFull_SMAVRPSSGOV (dq-Frame System Object)'],FullName_Apparatus{i});
