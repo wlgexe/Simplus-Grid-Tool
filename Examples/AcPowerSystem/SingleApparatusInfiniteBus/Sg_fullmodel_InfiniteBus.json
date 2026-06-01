@@ -1,0 +1,169 @@
+
+{
+
+  "Basic": 
+{
+
+    "Fs": 25000,
+    "Fbase": 50,
+    "Sbase": 1,
+    "Vbase": 1
+  
+}
+,
+  "Advance": 
+{
+
+    "DiscretizationMethod": 2,
+    "LinearizationTimes": 1,
+    "DiscretizationDampingFlag": 1,
+    "DirectFeedthrough": 0,
+    "PowerFlowAlgorithm": 1,
+    "EnableCreateSimulinkModel": 1,
+    "EnablePlotPole": 1,
+    "EnablePlotAdmittance": 1,
+    "EnablePrintOutput": 1
+  
+}
+,
+  "Bus": 
+[
+
+    
+{
+
+      "BusNo": 1,
+      "BusType": 1,
+      "Voltage": 0.995,
+      "Theta": 0,
+      "PGi": 0,
+      "QGi": 0,
+      "PLi": 0,
+      "QLi": 0,
+      "Qmin": -1,
+      "Qmax": 1,
+      "AreaNo": 1,
+      "AcDc": 1
+    
+}
+,
+    
+{
+
+      "BusNo": 2,
+      "BusType": 3,
+      "Voltage": 1,
+      "Theta": 0,
+      "PGi": 0.9,
+      "QGi": 0.3,
+      "PLi": 0,
+      "QLi": 0,
+      "Qmin": -1,
+      "Qmax": 1,
+      "AreaNo": 1,
+      "AcDc": 1
+    
+}
+
+  
+]
+,
+  "NetworkLine": 
+{
+
+    "FromBus": 1,
+    "ToBus": 2,
+    "R": 0,
+    "wL": 0.65,
+    "wC": 0,
+    "G": 0,
+    "TurnsRatio": 1
+  
+}
+,
+  "NetworkLineIEEE": 
+[
+
+]
+,
+  "Apparatus": 
+[
+
+    
+{
+
+      "BusNo": 1,
+      "Type": 90,
+      "Para": 
+[
+
+]
+
+    
+}
+,
+    
+{
+
+      "BusNo": 2,
+      "Type": 61,
+      "Para": 
+{
+
+        "X": 0.15,
+        "R": 0.0043,
+        "Xd": 1.67,
+        "Xd1": 0.265,
+        "Xd2": 0.205,
+        "Td1": 0.587,
+        "Td2": 0.025,
+        "Xq": 1.6,
+        "Xq1": 0.46,
+        "Xq2": 0.205,
+        "Tq1": 0.135,
+        "Tq2": 0.027,
+        "H": 2.656,
+        "D": 1,
+        "TR": 1,
+        "KA": 50,
+        "TA": 0.06,
+        "VRmax": 1,
+        "VRmin": -1,
+        "KE": -0.047,
+        "TE": 0.52,
+        "E1": 3.24,
+        "SE1": 0.072,
+        "E2": 4.32,
+        "SE2": 0.282,
+        "KF": 0.083,
+        "TF": 1,
+        "KP": 0.083,
+        "KI": 1,
+        "KD": 0.083,
+        "TD": 1,
+        "KPSS": 0,
+        "TW": 10,
+        "T11": 5,
+        "T12": 0.6,
+        "T21": 3,
+        "T22": 0.5,
+        "T31": 3,
+        "T32": 0.5,
+        "VSSmax": 0.2,
+        "VSSmin": -0.2,
+        "Rgov": 0.011,
+        "T1gov": 0.1,
+        "T2gov": 0.1,
+        "T3gov": 0.3,
+        "Dtgov": 0.25
+      
+}
+
+    
+}
+
+  
+]
+
+
+}
